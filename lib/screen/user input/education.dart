@@ -12,7 +12,9 @@ class _EducationState extends State<Education> {
   GlobalKey<FormState> key=GlobalKey<FormState>();
   TextEditingController d=TextEditingController();
   TextEditingController n=TextEditingController();
-  Widget Education() {
+  TextEditingController x=TextEditingController();
+  TextEditingController s=TextEditingController();
+  Widget education() {
     return Container(
       margin: const EdgeInsets.all(25),
       padding: const EdgeInsets.all(25),
@@ -26,65 +28,96 @@ class _EducationState extends State<Education> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("DOB", style: TextStyle(fontSize: 18, color: prime_b),),
+            Text("Course/Degree", style: TextStyle(fontSize: 18, color: prime_b),),
+            SizedBox(height: 10,),
             TextFormField(
-              keyboardType: TextInputType.datetime,
               textInputAction: TextInputAction.next,
               controller: d,
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(strokeAlign: 2)),
-                label: Text("DD/MM/YYYY"),
+               hintText:" B.Tech",
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "Enter your DOB";
+                  return "Enter your Course name";
                 }
 
                 return null;
               },
+              onFieldSubmitted: (value) {
+                details.add({"course":value});
+              },
             ),
+            SizedBox(height: 15,),
             Text(
-              "Nationality", style: TextStyle(fontSize: 18, color: prime_b),),
+              "University/School/Institute", style: TextStyle(fontSize: 18, color: prime_b),),
+            SizedBox(height: 10,),
             TextFormField(
-              textInputAction: TextInputAction.done,
+              textInputAction: TextInputAction.next,
               controller: n,
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(strokeAlign: 2)),
-                label: Text("Indian"),
+                hintText: "V.N.S.G.U."
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "Enter your Nationality";
+                  return "Enter your School name";
                 }
 
                 return null;
               },
+              onFieldSubmitted: (value) {
+                details.add({"University/School/Institute":value});
+              },
             ),
-            const SizedBox(height: 25,),
-            Center(
-              child: ElevatedButton(onPressed: () {
-                if (key.currentState!.validate()) {
-                  String dob = d.text;
-                  String nation = n.text;
-                  details.add({"dob": dob});
-                  details.add({"nationality": nation});
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      backgroundColor: Colors.white,
-                      shape: Border.fromBorderSide(
-                          BorderSide(width: 12, color: prime_b)),
-                      content: const Center(
-                          child: Text(
-                            "Your information is updated",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ))));
-                }
-              }, child: const Text("Submit"),
+            const SizedBox(height: 15,),
+            Text("Last year's percentage(%)", style: TextStyle(fontSize: 18, color: prime_b),),
+            SizedBox(height: 10,),
+            TextFormField(
+              keyboardType: const TextInputType.numberWithOptions(decimal: true,signed: true),
+              textInputAction: TextInputAction.next,
+              controller: x,
+              decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(strokeAlign: 2)),
+                hintText: "90",
               ),
-            )
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Enter your %";
+                }
+
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                details.add({"Last year's percentage(%)":value});
+              },
+            ),
+            SizedBox(height: 15,),
+            Text(
+              "Passing Year", style: TextStyle(fontSize: 18, color: prime_b),),
+            SizedBox(height: 10,),
+            TextFormField(
+              textInputAction: TextInputAction.done,
+              controller: s,
+              decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(strokeAlign: 2)),
+                hintText: "2019"
+              ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Enter your passing year";
+                }
+
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                details.add({"Passing Year":value});
+              },
+            ),
           ],
         ),
       ),
@@ -110,7 +143,7 @@ class _EducationState extends State<Education> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Education(),
+        child: education(),
       ),
     );
   }
