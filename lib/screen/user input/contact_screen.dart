@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:resume_bulider/utils/color.dart';
 import 'package:resume_bulider/utils/global.dart';
 
@@ -10,6 +13,7 @@ class ContactInfo extends StatefulWidget {
 }
 
 class _ContactInfoState extends State<ContactInfo> {
+  String? path;
   int index = 0;
   TextEditingController name1 = TextEditingController();
   TextEditingController email1 = TextEditingController();
@@ -201,17 +205,32 @@ class _ContactInfoState extends State<ContactInfo> {
         height: MediaQuery.sizeOf(context).height * 0.30,
         width: MediaQuery.sizeOf(context).width * 0.85,
         color: Colors.white,
-        child: const Stack(
+        child:  Stack(
           alignment: Alignment.center,
           children: [
-            CircleAvatar(
-              radius: 60,
+            path==null?
+            const CircleAvatar(
+              radius: 90,
+            ): CircleAvatar(
+              radius: 90,
+              backgroundImage: FileImage(File(path!)),
             ),
-            Align(
+             Align(
                 alignment: Alignment(0.3, 0.3),
-                child: Icon(
-                  Icons.add_a_photo_rounded,
-                  color: Colors.blueAccent,
+                child: IconButton(
+                  onPressed: () async{
+                   ImagePicker picker = ImagePicker();
+                   XFile? image = await picker.pickImage(source: ImageSource.camera);
+                   setState(() {
+                     path=image!.path;
+                   });
+
+                  },
+                  icon: const Icon(
+                    Icons.add_a_photo_rounded,
+                    color: Colors.blueAccent,
+                    weight: 50,
+                  ),
                 ))
           ],
         ),

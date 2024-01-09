@@ -71,7 +71,7 @@ class _CarrierInfoState extends State<CarrierInfo> {
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(strokeAlign: 2)),
-                    label: Text("Description"),
+                    hintText: "Description"
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -117,7 +117,7 @@ class _CarrierInfoState extends State<CarrierInfo> {
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(strokeAlign: 2)),
-                    label: Text("Software Engineer"),
+                    hintText: "Software Engineer"
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
