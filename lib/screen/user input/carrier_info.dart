@@ -20,12 +20,10 @@ class _CarrierInfoState extends State<CarrierInfo> {
       appBar: AppBar(
         toolbarHeight: 180,
         backgroundColor: prime_b,
-        leading: InkWell(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.white,
-            )),
+        leading: Icon(
+          Icons.arrow_outward_outlined,
+          color: prime_b,
+        ),
         centerTitle: true,
         title: const Text(
           "Carrier Info",
@@ -69,10 +67,9 @@ class _CarrierInfoState extends State<CarrierInfo> {
                   maxLines: 4,
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(strokeAlign: 2)),
-                    hintText: "Description"
-                  ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(strokeAlign: 2)),
+                      hintText: "Description"),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter valid Description";
@@ -113,12 +110,11 @@ class _CarrierInfoState extends State<CarrierInfo> {
                   height: 10,
                 ),
                 TextFormField(
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(strokeAlign: 2)),
-                    hintText: "Software Engineer"
-                  ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(strokeAlign: 2)),
+                      hintText: "Software Engineer"),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter valid Description";
@@ -138,6 +134,31 @@ class _CarrierInfoState extends State<CarrierInfo> {
             ),
           ),
         ),
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text(
+                  "Your Data Saved",
+                  style: TextStyle(color: Colors.black),
+                ),
+                shape: Border.fromBorderSide(
+                    BorderSide(width: 12, color: prime_b)),
+                backgroundColor: Colors.white,
+              ),
+            );
+            Navigator.pop(context);
+          },
+          style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateColor.resolveWith((states) => prime_b)),
+          child: const Center(
+            child: Text(
+              "Save and Back",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        )
       ],
     );
   }
