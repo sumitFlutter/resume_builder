@@ -185,6 +185,7 @@ class _ContactInfoState extends State<ContactInfo> {
                           style: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         ))));
+                    Navigator.pop(context);
                   }
                 },
                 child: const Text("Submit"),

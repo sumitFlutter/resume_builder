@@ -138,7 +138,7 @@ class _EducationState extends State<Education> {
             )),
         centerTitle: true,
         title: const Text(
-          "Personal Details",
+          "Education",
           style: TextStyle(color: Colors.white),
         ),
       ),

@@ -119,6 +119,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             style: TextStyle(
                                 color: Colors.black, fontWeight: FontWeight.bold),
                           ))));
+                  Navigator.pop(context);
                 }
     
               }, child: const Text("Submit"),
@@ -136,12 +137,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
       appBar: AppBar(
         toolbarHeight: 180,
         backgroundColor: prime_b,
-        leading: InkWell(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.white,
-            )),
+        leading: Icon(
+          Icons.arrow_back_ios_new,
+          color: prime_b,
+        ),
         centerTitle: true,
         title: const Text(
           "Personal Details",
